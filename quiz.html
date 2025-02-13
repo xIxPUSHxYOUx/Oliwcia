@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz o Naszej Miłości 💕</title>
+    <style>
+        body {
+            background-color: #ffdde1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff4b5c;
+            font-size: 2.5rem;
+        }
+        .quiz-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .question {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        .options button {
+            background-color: #ff4b5c;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .options button:hover {
+            background-color: #e63946;
+        }
+        .result {
+            font-size: 1.3rem;
+            color: #d63384;
+            margin-top: 20px;
+            display: none;
+        }
+        .back-link {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #ff4b5c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            color: #e63946;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz czy dobrze znasz starego i nasz związek 💖</h1>
+
+    <div class="quiz-container">
+        <div class="question">Kiedy była nasza pierwsza wiadomość? 📩</div>
+        <div class="options">
+            <button onclick="checkAnswer(this, 'A', 'result1')">A) 9 czerwca</button>
+            <button onclick="checkAnswer(this, 'A', 'result1')">B) 9 lipca</button>
+            <button onclick="checkAnswer(this, 'A', 'result1')">C) 9 maja</button>
+        </div>
+        <div class="result" id="result1"></div>
+    </div>
+
+    <div class="quiz-container">
+        <div class="question">Kiedy był pierwszy lodzik? 🍦</div>
+        <div class="options">
+            <button onclick="checkAnswer(this, 'B', 'result2')">A) 9 września</button>
+            <button onclick="checkAnswer(this, 'B', 'result2')">B) 6 września</button>
+            <button onclick="checkAnswer(this, 'B', 'result2')">C) 7 września</button>
+        </div>
+        <div class="result" id="result2"></div>
+    </div>
+
+    <div class="quiz-container">
+        <div class="question">Gdzie zabrałem Cię na pierwszym spotkaniu? 🏍️</div>
+        <div class="options">
+            <button onclick="checkAnswer(this, 'C', 'result3')">A) Pod most</button>
+            <button onclick="checkAnswer(this, 'C', 'result3')">B) Do domu</button>
+            <button onclick="checkAnswer(this, 'C', 'result3')">C) Pod autostradę</button>
+        </div>
+        <div class="result" id="result3"></div>
+    </div>
+
+    <div class="quiz-container">
+        <div class="question">Mój wymażony motorek? 🏍️</div>
+        <div class="options">
+            <button onclick="checkAnswer(this, 'A', 'result4')">A) R1 rn22</button>
+            <button onclick="checkAnswer(this, 'A', 'result4')">B) GSX-R 600 k6</button>
+            <button onclick="checkAnswer(this, 'A', 'result4')">C) KTM EXC450 sm</button>
+        </div>
+        <div class="result" id="result4"></div>
+    </div>
+
+    <div class="quiz-container">
+        <div class="question">Lodzik czy coś tego koleżanko? 👀</div>
+        <div class="options">
+            <button onclick="checkAnswer(this, 'A', 'result5')">A) TAK</button>
+            <button onclick="checkAnswer(this, 'A', 'result5')">B) NIE</button>
+        </div>
+        <div class="result" id="result5"></div>
+    </div>
+
+    <a href="oliwcia.html" class="back-link">⬅ Powrót do strony głównej</a>
+
+    <script>
+        function checkAnswer(button, correctAnswer, resultId) {
+            let resultDiv = document.getElementById(resultId);
+            let buttons = button.parentElement.querySelectorAll("button");
+
+            // Resetowanie kolorów przycisków
+            buttons.forEach(btn => btn.style.backgroundColor = "#ff4b5c");
+
+            if (button.innerText.startsWith(correctAnswer)) {
+                resultDiv.innerText = "Brawoooo!!! Lecisz mała!!! 🎉";
+                resultDiv.style.display = 'block';
+                button.style.backgroundColor = '#28a745';
+            } else {
+                resultDiv.innerText = "No nie no coś ty... 😢";
+                resultDiv.style.display = 'block';
+                button.style.backgroundColor = '#dc3545';
+            }
+        }
+    </script>
+
+<audio id="bg-music" loop>
+    <source src="dwts.mp3" type="audio/mpeg">
+    Twoja przeglądarka nie obsługuje odtwarzacza audio.
+</audio>
+
+<button id="music-btn" onclick="toggleMusic()">🎵 Pause</button>
+
+<script>
+    let music = document.getElementById("bg-music");
+    let musicButton = document.getElementById("music-btn");
+
+    function toggleMusic() {
+        if (music.paused) {
+            music.play();
+            musicButton.innerText = "🎵 Pause";
+        } else {
+            music.pause();
+            musicButton.innerText = "▶ Play";
+        }
+    }
+
+    // Automatyczne odtwarzanie po załadowaniu strony
+    window.addEventListener("load", () => {
+        music.play().catch(() => {
+            console.log("Autoodtwarzanie zablokowane przez przeglądarkę.");
+        });
+    });
+</script>
+
+<style>
+    #music-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #ff4b5c;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    #music-btn:hover {
+        background: #e63946;
+    }
+</style>
+
+<script>
+    document.addEventListener("click", (e) => {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "absolute";
+        heart.style.left = e.clientX + "px";
+        heart.style.top = e.clientY + "px";
+        heart.style.fontSize = "2rem";
+        heart.style.animation = "floatUp 1.5s ease-out";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 1500);
+    });
+
+    // Animacja serduszek
+    const style = document.createElement("style");
+    style.innerHTML = `
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-50px); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+</body>
+</html>

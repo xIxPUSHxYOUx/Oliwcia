@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasza Galeria Zdjęć 📸</title>
+    <style>
+        body {
+            background-color: #ffdde1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff4b5c;
+            font-size: 2.5rem;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .back-link {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #ff4b5c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            color: #e63946;
+        }
+    </style>
+</head>
+<body>
+    <h1>Troszkę ich jest więc dodam parę 📷</h1>
+    <div class="gallery" id="gallery">
+        <img src="1.png" alt="Nasze wspólne zdjęcie">
+        <img src="2.png" alt="Nasze wspólne zdjęcie">
+        <img src="3.png" alt="Nasze wspólne zdjęcie">
+    </div>
+    <div class="gallery" id="gallery">
+        <img src="4.png" alt="Nasze wspólne zdjęcie">
+        <img src="5.jpg" alt="Nasze wspólne zdjęcie">
+        <img src="6.jpg" alt="Nasze wspólne zdjęcie">
+    </div>
+    <div class="gallery" id="gallery">
+        <img src="7.jpg" alt="Nasze wspólne zdjęcie">
+        <img src="8.jpg" alt="Nasze wspólne zdjęcie">
+        <img src="9.jpg" alt="Nasze wspólne zdjęcie">
+    </div>
+    <div class="gallery" id="gallery">
+        <img src="16.jpg" alt="Nasze wspólne zdjęcie">
+        <img src="11.jpg" alt="Nasze wspólne zdjęcie">
+        <img src="12.jpg" alt="Nasze wspólne zdjęcie">
+    </div>
+    <div class="gallery" id="gallery">
+        <img src="13.jpg" alt="Nasze wspólne zdjęcie">
+        <img src="14.jpg" alt="Nasze wspólne zdjęcie">
+        <img src="15.jpg" alt="Nasze wspólne zdjęcie">
+    </div>
+    
+    <a href="oliwcia.html" class="back-link">⬅ Powrót do strony głównej</a>
+
+    <audio id="bg-music" loop>
+        <source src="dwts.mp3" type="audio/mpeg">
+        Twoja przeglądarka nie obsługuje odtwarzacza audio.
+    </audio>
+    
+    <button id="music-btn" onclick="toggleMusic()">🎵 Pause</button>
+    
+    <script>
+        let music = document.getElementById("bg-music");
+        let musicButton = document.getElementById("music-btn");
+    
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicButton.innerText = "🎵 Pause";
+            } else {
+                music.pause();
+                musicButton.innerText = "▶ Play";
+            }
+        }
+    
+        // Automatyczne odtwarzanie po załadowaniu strony
+        window.addEventListener("load", () => {
+            music.play().catch(() => {
+                console.log("Autoodtwarzanie zablokowane przez przeglądarkę.");
+            });
+        });
+    </script>
+    
+    <style>
+        #music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff4b5c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #music-btn:hover {
+            background: #e63946;
+        }
+    </style>
+
+<script>
+    document.addEventListener("click", (e) => {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "absolute";
+        heart.style.left = e.clientX + "px";
+        heart.style.top = e.clientY + "px";
+        heart.style.fontSize = "2rem";
+        heart.style.animation = "floatUp 1.5s ease-out";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 1500);
+    });
+
+    // Animacja serduszek
+    const style = document.createElement("style");
+    style.innerHTML = `
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-50px); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+</body>
+</html>

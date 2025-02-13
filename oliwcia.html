@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walentynki dla Ciebie 💖</title>
+    <style>
+        body {
+            background-color: #ffdde1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #ff4b5c;
+            font-size: 2.5rem;
+        }
+        .hidden-message {
+            display: none;
+            font-size: 1.5rem;
+            color: #d63384;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #ff4b5c;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #e63946;
+        }
+        @keyframes hearts {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 2rem;
+            animation: hearts 5s linear infinite;
+        }
+        .gallery-link {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #ff4b5c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .gallery-link:hover {
+            color: #e63946;
+        }
+        .quiz-link {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #ff4b5c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .quiz-link:hover {
+            color: #e63946;
+        }
+        h2 {
+            color: #ff4b5c;
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kocham Cię, Skarbie! 💕</h1>
+    <h2><p id="days-counter">Wytrzymujesz ze mną już ... dni! 💕</p></h2>
+    <button onclick="showMessage('message1')">Czy wiesz, że dla mnie...! 💘</button>
+    <button onclick="showMessage('message2')">A tak właściwie to wiesz, że... 🎁</button>
+    <button onclick="showMessage('message3')">Chcę tylko powiedzieć, że... 💞</button>
+    <div id="message1" class="hidden-message">Jesteś najcudowniejszą osobą na świecie! 💖</div>
+    <div id="message2" class="hidden-message">Każdy dzień z Tobą to coś pięknego! ✨</div>
+    <div id="message3" class="hidden-message">Zawsze będę przy Tobie! ❤️</div>
+    
+    <a href="galeria.html" class="gallery-link">Dwa czuby (kliknij) 📸</a>
+    <a href="quiz.html" class="quiz-link">Koniec dobrego, czas na wiedzę 📸</a>
+    
+    <script>
+        function showMessage(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 500);
+    </script>
+
+<audio id="bg-music" loop>
+    <source src="dwts.mp3" type="audio/mpeg">
+    Twoja przeglądarka nie obsługuje odtwarzacza audio.
+</audio>
+
+<button id="music-btn" onclick="toggleMusic()">🎵 Pause</button>
+
+<script>
+    let music = document.getElementById("bg-music");
+    let musicButton = document.getElementById("music-btn");
+
+    function toggleMusic() {
+        if (music.paused) {
+            music.play();
+            musicButton.innerText = "🎵 Pause";
+        } else {
+            music.pause();
+            musicButton.innerText = "▶ Play";
+        }
+    }
+
+    // Automatyczne odtwarzanie po załadowaniu strony
+    window.addEventListener("load", () => {
+        music.play().catch(() => {
+            console.log("Autoodtwarzanie zablokowane przez przeglądarkę.");
+        });
+    });
+</script>
+
+<style>
+    #music-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #ff4b5c;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    #music-btn:hover {
+        background: #e63946;
+    }
+</style>
+
+<script>
+    document.addEventListener("click", (e) => {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "absolute";
+        heart.style.left = e.clientX + "px";
+        heart.style.top = e.clientY + "px";
+        heart.style.fontSize = "2rem";
+        heart.style.animation = "floatUp 1.5s ease-out";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 1500);
+    });
+
+    // Animacja serduszek
+    const style = document.createElement("style");
+    style.innerHTML = `
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-50px); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+<script>
+    function countDays() {
+        const startDate = new Date("2024-08-13");
+        const today = new Date();
+        const difference = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+        document.getElementById("days-counter").innerText = `Wytrzymujesz ze mną już ${difference} dni! 💕`;
+    }
+    countDays();
+</script>
+
+
+</body>
+</html>
